@@ -172,3 +172,10 @@ $(call inherit-product, hardware/samsung/exynos4x12.mk)
 
 # Include non-opensource parts
 $(call inherit-product, vendor/samsung/smdk4412-common/common-vendor.mk)
+
+#AOJP Recovery
+$(call inherit-product-if-exists, bootable/recovery/etc/aojp.mk)
+
+#AOJP Common
+$(call inherit-product-if-exists, vendor/aojp/config/aojp.mk)
+
