@@ -922,9 +922,13 @@ int exynos_camera_params_apply(struct exynos_camera *exynos_camera, int force)
 				if (rc < 0)
 					ALOGE("%s: Unable to set object y position", __func__);
 			}
-		}
 
-		focus_mode = FOCUS_MODE_TOUCH;
+			/* After taking a picture, focus-areas is reseted by stock camera app to the center of the screen */
+			if (! ( (focus_x == (preview_width / 2)) && (focus_y == (preview_height / 2)) )) {
+				//ALOGV("%s focus_mode changed to %d due to focus-areas='%s'", __func__, focus_mode, focus_areas_string);
+				focus_mode = FOCUS_MODE_TOUCH;
+			}
+		}
 
 	}
 
@@ -2110,6 +2114,11 @@ int exynos_camera_capture_start(struct exynos_camera *exynos_camera)
 	goto complete;
 
 error:
+	if (exynos_camera->face_data != NULL && exynos_camera->face_data->release != NULL) {
+		exynos_camera->face_data->release(exynos_camera->face_data);
+		exynos_camera->face_data = NULL;
+	}
+
 	if (exynos_camera->capture_memory != NULL && exynos_camera->capture_memory->release != NULL) {
 		exynos_camera->capture_memory->release(exynos_camera->capture_memory);
 		exynos_camera->capture_memory = NULL;
@@ -2152,6 +2161,11 @@ void exynos_camera_capture_stop(struct exynos_camera *exynos_camera)
 	rc = exynos_v4l2_streamoff_cap(exynos_camera, 0);
 	if (rc < 0) {
 		ALOGE("%s: Unable to stop stream", __func__);
+	}
+
+	if (exynos_camera->face_data != NULL && exynos_camera->face_data->release != NULL) {
+		exynos_camera->face_data->release(exynos_camera->face_data);
+		exynos_camera->face_data = NULL;
 	}
 
 	if (exynos_camera->capture_memory != NULL && exynos_camera->capture_memory->release != NULL) {
