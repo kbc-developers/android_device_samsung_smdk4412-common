@@ -178,3 +178,6 @@ $(call inherit-product-if-exists, bootable/recovery/etc/aojp.mk)
 #AOJP Common
 $(call inherit-product-if-exists, vendor/aojp/config/aojp.mk)
 
+#AOJP Felica
+$(call inherit-product-if-exists, vendor/aojp/config/aojp_felica_samsung.mk)
+
