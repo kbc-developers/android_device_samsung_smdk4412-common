@@ -77,6 +77,7 @@ PRODUCT_PACKAGES := \
     libfimg \
     libnetcmdiface \
     libsecion \
+    libstlport \
     libsync \
     lights.exynos4 \
     macloader \
