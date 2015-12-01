@@ -114,7 +114,6 @@ PRODUCT_COPY_FILES += \
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
-    static_busybox \
     make_ext4fs \
     setup_fs
 
@@ -184,10 +183,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.hwui.render_dirty_regions=false
 
 PRODUCT_TAGS += dalvik.gc.type-precise
-
-# Set default USB interface
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
