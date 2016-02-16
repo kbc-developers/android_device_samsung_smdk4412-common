@@ -187,6 +187,9 @@ else
 BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/smdk4412-common/recovery/graphics.c
 endif
 
+# SELinux
+BOARD_SEPOLICY_DIRS += device/samsung/smdk4412-common/selinux
+
 # Charging mode
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 BOARD_BATTERY_DEVICE_NAME := "battery"
