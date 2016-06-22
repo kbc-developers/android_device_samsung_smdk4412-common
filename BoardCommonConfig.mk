@@ -184,6 +184,8 @@ TW_HAS_DOWNLOAD_MODE := true
 TW_BRIGHTNESS_PATH := /sys/class/backlight/panel/brightness
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/s3c-usbgadget/gadget/lun0/file
 #TWRP_EVENT_LOGGING := true
+
+TW_TARGET_RECOVERY_FSTAB := ../../../device/samsung/smdk4412-common/rootdir/twrp.fstab
 else
 BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/smdk4412-common/recovery/graphics.c
 endif
